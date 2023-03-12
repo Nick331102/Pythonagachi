@@ -29,5 +29,22 @@ class Creature:
         if self.hunger < 0:
             self.hunger == 0
             
+     # generate random number and handle user guesses       
+    def play(self):
+        # Create a random number between 0 and 2:
+        num = random.randint(0,2)
+        print("The create wants to play a game....")
+        print("It's thinking of a number that is either 0, 1, or 2")
+        user_guess = int(input("Please enter your guess:  "))
+        if user_guess ==  num:
+            print("You guessed correctly!")
+            self.boredom -= 3
+        else:
+            print("You guessed incorrectly...")
+            self.boredom -= 1
+            # boredom cant be less than 0
+            if self.boredom < 0:
+                self.boredom == 0
+            
         
-        
+            
