@@ -45,6 +45,65 @@ class Creature:
             # boredom cant be less than 0
             if self.boredom < 0:
                 self.boredom == 0
+    
+    def sleep(self):
+        self.is_sleeping == True
+        self.tiredness -= 3
+        self.boredom -= 2
+        print("Your creature is cureently sleeping.  zzzzzz")
+        
+        # tiredness cant be less than 0
+        if self.tiredness < 0:
+            self.tiresness == 0
+             # boredom cant be less than 0
+        if self.boredom < 0:
+            self.boredom == 0
+            
+    def awake(self):
+        num = random.randint(0,2)
+        if num == 0:
+            print("Your creature is just waking up.  Give it a second.")
+            self.is_sleeping == False
+            self.boredom == 0
+        else:
+            print("Your creature wont wake up...")
+            self.sleep()
+            
+    def clean(self):
+        self.dirtiness == 0
+        print("Your creature just took a nice bath!")
+        
+    def forage(self):
+        food_found = random.randint(0,4)
+        self.food += food_found
+        self.dirtiness += 2
+        print(f"Your creature just found {food_found} morsels of food.")
+    
+    # display the current state of the creature   
+    def show_values(self):
+        print("Name:", self.name)
+        print("Hunger:", self.hunger)
+        print("Boredom:", self.boredom)
+        print("Tiredness:", self.tiredness)
+        print("Dirtiness:", self.dirtiness)
+        print("Food Inventory:", self.food)
+        print("Sleeping Status:", self.is_sleeping)
+        
+    def increment_values(self, difficulty):
+        self.hunger += random.randint(0, difficulty)
+        
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+        
+        
             
         
             
