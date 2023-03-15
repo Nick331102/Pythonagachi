@@ -6,28 +6,28 @@ class Creature:
         self.name = name.title()
         
         # Attributes to track playing the game
-        hunger = 0
-        boredom = 0
-        tiredness = 0
-        dirtiness = 0
+        self.hunger = 0
+        self.boredom = 0
+        self.tiredness = 0
+        self.dirtiness = 0
         
         # track how much food in inventory
-        food = 2
+        self.food = 2
         
-        is_sleeping = False
-        is_alive = True
+        self.is_sleeping = False
+        self.is_alive = True
         
     def eat(self):
         if self.food > 0:
-            food -= 1
+            self.food -= 1
             decrease = random.randint(1,4)
-            hunger -= decrease
+            self.hunger -= decrease
             print(f"{self.name} just ate a great meal!")
         else:
             print(f"{self.name} doesn't have any food available...")
             
         if self.hunger < 0:
-            self.hunger == 0
+            self.hunger = 0
             
      # generate random number and handle user guesses       
     def play(self):
@@ -44,20 +44,20 @@ class Creature:
             self.boredom -= 1
             # boredom cant be less than 0
             if self.boredom < 0:
-                self.boredom == 0
+                self.boredom = 0
     
     def sleep(self):
-        self.is_sleeping == True
+        self.is_sleeping = True
         self.tiredness -= 3
         self.boredom -= 2
         print("Your creature is cureently sleeping.  zzzzzz")
         
         # tiredness cant be less than 0
         if self.tiredness < 0:
-            self.tiresness == 0
+            self.tiresness = 0
              # boredom cant be less than 0
         if self.boredom < 0:
-            self.boredom == 0
+            self.boredom = 0
             
     def awake(self):
         num = random.randint(0,2)
@@ -91,6 +91,53 @@ class Creature:
         
     def increment_values(self, difficulty):
         self.hunger += random.randint(0, difficulty)
+        
+        if self.is_sleeping == False:
+            self.boredom += random.randint(0, difficulty)
+            self.tiredness += random.randint(0, difficulty)
+        
+        self.dirtiness += random.randint(0, difficulty)
+    
+    def kill(self):
+        if self.hunger >= 10:
+            self.is_alive = False
+        elif self.dirtiness >= 10:
+            print("Your creature has suffered a fatal infection and has died.")
+            self.is_alive = False
+        elif self.boredom >= 10:
+            self.boredom = 10
+            print("Your creature is bored and will soon be asleep")
+            self.is_sleeping == True
+        elif self.tiredness >= 10:
+            self.tiredness = 10
+            print("Your creature is sleepy and will soon be asleep")
+            self.is_sleeping = True
+
+def show_menu(creature):
+    if creature.is_sleeping:
+        choice = int(input("Creature is sleeping. Press 6 to wake up."))
+        choice = 6
+    else:
+        print("Enter 1 to eat.")
+        print("Enter 2 to play.")
+        choice = int(input("Enter your choice: "))
+    
+    if choice == 1:
+        creature.eat()
+    elif choice == 2:
+        creature.play()
+    elif choice == 6:
+        creature.awake()
+    else:
+        print("Invalid choice!")
+
+
+        
+        
+        
+        
+            
+            
         
         
         
