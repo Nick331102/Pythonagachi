@@ -98,6 +98,7 @@ class Creature:
         
         self.dirtiness += random.randint(0, difficulty)
     
+    # conditions that affect the state of the creature
     def kill(self):
         if self.hunger >= 10:
             self.is_alive = False
@@ -112,6 +113,7 @@ class Creature:
             self.tiredness = 10
             print("Your creature is sleepy and will soon be asleep")
             self.is_sleeping = True
+
 
 def show_menu(creature):
     if creature.is_sleeping:
@@ -130,6 +132,96 @@ def show_menu(creature):
         creature.awake()
     else:
         print("Invalid choice!")
+ 
+        
+def call_action(creature, choice):
+    if choice == 1:
+        creature.eat()
+    elif choice == 2:
+        creature.play()
+    elif choice == 3:
+        creature.sleep()
+    elif choice == 4:
+        creature.clean()
+    elif choice == 5:
+        creature.forage()
+    elif choice == 6:
+        creature.awake
+    else:
+        print("You entered an invalid choice...")
+        
+# Main code
+print("Welcome to Pythonagachi 2023")
+
+# active variable
+running = True
+while running:
+    player_name = input("Enter the name of your creature:  ")
+    player = Creature(player_name) # creature object created
+    
+    rounds = 1
+
+     # input to select the difficulty level
+    difficulty = int(input("Please enter a difficulty level between 1 and 5:  "))
+    if difficulty > 5:
+        difficulty = 5
+    elif difficulty < 1:
+        difficulty = 1
+        
+    while player.is_alive:
+        print(f"\n Round: {rounds} ")
+        player.show_values()
+        show_menu(player)
+        call_action(player)
+    
+        # show current round    
+        print(f"The current round is: {rounds}")
+    
+        player.show_values()
+    
+        print("Press enter to continue")
+    
+        player.increment_values()
+        player.kill()
+        rounds += 1
+        
+        if not player.is_alive:
+            print(f'Your creature has died!  it survived {rounds} rounds.')
+            play_again = input("Would you like to play again?").lower()
+            if play_again == "n":
+                running = False
+            elif play_again == "y":
+                break
+            else:
+                print("Invalid inout, Game over.")
+                running = False
+        
+print("Thank you for playing Pythonagachi 2023!")
+                 
+            
+
+            
+
+    
+    
+    
+    
+        
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+ 
+
+    
+        
 
 
         
